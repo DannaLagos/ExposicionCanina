@@ -2,6 +2,8 @@
 package umariana.exposicioncanina;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -26,7 +28,7 @@ public ExposicionCanina() {
             System.out.println("====== Menu de opciones ======");
             System.out.println("1. Agregar un nuevo Perro");
             System.out.println("2. Mostrar la informacion de un perro especifico");
-            System.out.println("3. Organizador de Puntaje y Edad");
+            System.out.println("3. Organizador de Raza,Puntaje y Edad");
             System.out.println("4. Modificar informacion registrada");
             System.out.println("5. Buscar Perro con mayor puntaje");
             System.out.println("6. Buscar perro con menor puntaje");
@@ -145,7 +147,7 @@ public ExposicionCanina() {
               puntaje = lector.nextInt();
               if (puntaje < 1 || puntaje > 5) {
               //// Verifica si el puntaje está fuera del rango válido
-              System.out.println("La puntos debe estar entre 1 a 5. Inténtelo de otra vez.");
+              System.out.println("La puntos debe estar entre 1 a 5. Inténtelo otra vez.");
               }else{
               }
               } while (puntaje < 1 || puntaje > 5);
@@ -194,7 +196,8 @@ public ExposicionCanina() {
               System.out.println("====== ¿Como desea ordenar los Perros? ========");
               System.out.println("1. Puntaje.");
               System.out.println("2. Edad.");
-              System.out.println("3. Salir del menú.");
+              System.out.println("3. Raza.");
+              System.out.println("4. Salir del menú.");
               System.out.println("============================");
               
               // Leer la opción ingresada por el usuario
@@ -214,6 +217,11 @@ public ExposicionCanina() {
                       mostrarListadoPerros("Edad");
                       break;
                   case 3:
+                      //Organizar la lista de perros por edad y mustrar el listado
+                      organizarPorEdad();
+                      mostrarListadoPerros("Raza");
+                  break;
+                  case 4:
                       // Salir del menú de opciones
                       System.out.println("Salió del menú.");
                       System.out.println("====================");
@@ -226,6 +234,14 @@ public ExposicionCanina() {
               // Repite el menú hasta que el usuario decida salir
           } while (true); // Repite el menú hasta que el usuario decida salir
       }
+    private void organizarRaza(){
+        //funcion para mistrar la raza en orden
+        Collections.sort(misPerros, Comparator.comparing(Perro::getRaza));
+        System.out.println("La raza de los perros");
+        for(Perro p:misPerros){
+            System.out.println(p.getRaza());
+        }
+    }
 
       // Ordena la lista de perros por edad en orden ascendente
       private void organizarPorEdad() {
@@ -274,7 +290,7 @@ public ExposicionCanina() {
        
     public void modificarInformacion() {
            lector.nextLine();
-           System.out.println("Escriba el nombre del canino que desea modificar la informacion:");
+           System.out.println("Ingrese el perro al que desea modificar la informacion:");
            String nombreBuscado = lector.nextLine();
            boolean activo = false;
            
@@ -283,13 +299,13 @@ public ExposicionCanina() {
            if (p.getNombre().equalsIgnoreCase(nombreBuscado)) {
            do {
                // Mostrar el menú de opciones para modificar la información del perro
-               System.out.println("====== MENU PARA MODIFICAR LA INFORMACION ======");
-               System.out.println("1. Para modificar la edad.");
-               System.out.println("2. Para cambiar la raza.");
-               System.out.println("3. Para modificar el puntaje.");
-               System.out.println("4. Para modificar la foto.");
-               System.out.println("5. Para salir del menu de modificaciones.");
-               System.out.println("=======================================");
+               System.out.println("==== ¿Que informacion desea modificar? ====");
+               System.out.println("1. La edad.");
+               System.out.println("2. La raza.");
+               System.out.println("3. El puntaje.");
+               System.out.println("4. La foto.");
+               System.out.println("5. Para salir del menu.");
+               System.out.println("=============================");
                        
             int opcion = lector.nextInt();
                        lector.nextLine(); 
