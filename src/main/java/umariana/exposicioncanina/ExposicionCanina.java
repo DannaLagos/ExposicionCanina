@@ -218,7 +218,7 @@ public ExposicionCanina() {
                       break;
                   case 3:
                       //Organizar la lista de perros por edad y mustrar el listado
-                      organizarPorEdad();
+                      organizarRaza();
                       mostrarListadoPerros("Raza");
                   break;
                   case 4:
